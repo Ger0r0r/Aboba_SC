@@ -27,7 +27,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y")
 
 ### Файлы сборки
 #set(SOURCES main.cpp)
-file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/*.cpp)
+file(GLOB_RECURSE CPPS ${PROJECT_SOURCE_DIR}/*.cpp)
 
 # add_executable(${PROJECT_NAME} main.cpp)
 # add_executable(${PROJECT_NAME} SOURCES)
