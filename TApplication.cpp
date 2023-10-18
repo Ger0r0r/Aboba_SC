@@ -30,22 +30,18 @@ namespace SFML_W{
 
 		sf::View view(sf::Vector2f(0.f,0.f),sf::Vector2f(screen.x, screen.y));
 
-		Chart.Print();
 		sf::VertexArray Lines_hb(sf::Lines, (int)(v%10) ? (2*(v/10+2)) : (2*(v/10+1)));
 		sf::VertexArray Lines_hg(sf::Lines, (int)(v%10) ? (2*(v/10*9+v%10-1)) : (2*(v/10*9)));
 		sf::VertexArray Lines_vb(sf::Lines, (int)(h%10) ? (2*(h/10+2)) : (2*(h/10+1)));
 		sf::VertexArray Lines_vg(sf::Lines, (int)(h%10) ? (2*(h/10*9+h%10-1)) : (2*(h/10*9)));
 
-		Chart.Print();
 		std::cout << ((int)(v%10) ? (2*(v/10+2)) : (2*(v/10+1))) << std::endl;
 		std::cout << ((int)(v%10) ? (2*(v/10*9+v%10-1)) : (2*(v/10*9))) << std::endl;
 		std::cout << ((int)(h%10) ? (2*(h/10+2)) : (2*(h/10+1))) << std::endl;
 		std::cout << ((int)(h%10) ? (2*(h/10*9+h%10-1)) : (2*(h/10*9))) << std::endl;
 
-		Chart.Print();
 		CALC_FUNC::CLC_set_lines(v, h, Lines_hb, Lines_hg, Lines_vb, Lines_vg);
 
-		Chart.Print();
 		sf::Clock clock;
 		Window->setFramerateLimit(PERFECT_FRAME_RATE);
 		while (Window->isOpen()) {
@@ -63,11 +59,11 @@ namespace SFML_W{
 					break;
 				
 				case sf::Event::MouseWheelScrolled:
-					if (event.mouseWheelScroll.delta >= 1) {
+					if (event.mouseWheelScroll.delta <= -1) {
 						zoom *= zoom_factor;
 						view.zoom(1.f * zoom_factor);
 					}
-					if (event.mouseWheelScroll.delta <= -1) {
+					if (event.mouseWheelScroll.delta >= 1) {
 						zoom /= zoom_factor;
 						view.zoom(1.f / zoom_factor);
 					}
@@ -91,7 +87,6 @@ namespace SFML_W{
 			Window->display();
 		}
 
-		Chart.Print();
 		return;
 	}
 
