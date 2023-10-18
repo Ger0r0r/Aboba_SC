@@ -5,7 +5,7 @@ namespace SFML_W{
 
 	sf::Vector2i screen(1000,1000);
 	const float zoom_factor = 1.05;
-	// float zoom = 1.f;
+	float zoom = 1.f;
 
 	TApplication::TApplication():
 		Window(nullptr) {
@@ -52,11 +52,11 @@ namespace SFML_W{
 				
 				case sf::Event::MouseWheelScrolled:
 					if (event.mouseWheelScroll.delta >= 1) {
-						// zoom *= zoom_factor;
+						zoom *= zoom_factor;
 						view.zoom(1.f * zoom_factor);
 					}
 					if (event.mouseWheelScroll.delta <= -1) {
-						// zoom /= zoom_factor;
+						zoom /= zoom_factor;
 						view.zoom(1.f / zoom_factor);
 					}
 					break;
