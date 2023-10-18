@@ -1,5 +1,5 @@
 ### Выставить минимальную версию CMake
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.5)
 
 ### Устанавливает переменную
 # ${PROJECT_NAME}
@@ -27,13 +27,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y")
 
 ### Файлы сборки
 #set(SOURCES main.cpp)
-file(GLOB_RECURSE CPPS ${PROJECT_SOURCE_DIR}/*.cpp)
+file(GLOB
+		CPPS "*.cpp")
 
 # add_executable(${PROJECT_NAME} main.cpp)
 # add_executable(${PROJECT_NAME} SOURCES)
 add_executable(${PROJECT_NAME} ${CPPS})
 
-
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
-target_link_libraries(${EXEC_FILE} sfml-graphics sfml-audio sfml-window sfml-system)
+target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio sfml-window)

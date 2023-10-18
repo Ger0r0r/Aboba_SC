@@ -1,7 +1,7 @@
 #include "include/main.hpp"
 #include "include/TApplication.hpp"
-#include "include/SCPattern.hpp"
 #include <iostream>
+#include "include/SCPattern.hpp"
 #include <fstream>
 
 int main(int argc, char *argv[]) {

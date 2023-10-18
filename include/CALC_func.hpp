@@ -2,6 +2,7 @@
 #define CALCULATION_FUNCTION_FOR_STITCH_CROSS
 
 #include "main.hpp"
+#include <iostream>
 
 namespace CALC_FUNC {
 	
