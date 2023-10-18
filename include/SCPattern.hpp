@@ -18,6 +18,7 @@ namespace SCP_space {
 			~SCPattern();
 			void Init(std::ifstream &);
 			void Get_Size (int &, int &);
+			void Print ();
 			void End();
 		};
 	}
