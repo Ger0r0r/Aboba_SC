@@ -2,6 +2,11 @@
 #include <iostream>
 
 namespace SFML_W{
+
+	sf::Vector2i screen(1000,1000);
+	const float zoom_factor = 1.05;
+	// float zoom = 1.f;
+
 	TApplication::TApplication():
 		Window(nullptr) {
 	}
@@ -11,7 +16,7 @@ namespace SFML_W{
 	}
 		
 	void TApplication::Init() {
-		Window = new sf::RenderWindow(sf::VideoMode(1000, 1000), "AbObA");
+		Window = new sf::RenderWindow(sf::VideoMode(screen.x, screen.y), "AbObA");
 		Window->clear(sf::Color::White);
 	}
 		
@@ -19,6 +24,9 @@ namespace SFML_W{
 
 		int h,v;
 		Chart.Get_Size(h,v);
+
+		sf::View view(sf::Vector2f(0.f,0.f),sf::Vector2f(screen.x, screen.y));
+
 		sf::VertexArray Lines_hb(sf::Lines, (int)(v%10) ? (2*(v/10+2)) : (2*(v/10+1)));
 		sf::VertexArray Lines_hg(sf::Lines, (int)(v%10) ? (2*(v/10*9+v%10-1)) : (2*(v/10*9)));
 		sf::VertexArray Lines_vb(sf::Lines, (int)(h%10) ? (2*(h/10+2)) : (2*(h/10+1)));
@@ -33,14 +41,36 @@ namespace SFML_W{
 			float current_time = clock.restart().asSeconds();
 			float current_fps = 1/current_time;
 
-			std::cout << current_fps << std::endl;
+			std::cout << zoom << "\t\t" << current_fps << std::endl;
 
 			sf::Event event;
 			while (Window->pollEvent(event)) {
-				if (event.type == sf::Event::Closed)
-                	Window->close();
+				switch (event.type){
+				case sf::Event::Closed:
+					Window->close();
+					break;
+				
+				case sf::Event::MouseWheelScrolled:
+					if (event.mouseWheelScroll.delta >= 1) {
+						// zoom *= zoom_factor;
+						view.zoom(1.f * zoom_factor);
+					}
+					if (event.mouseWheelScroll.delta <= -1) {
+						// zoom /= zoom_factor;
+						view.zoom(1.f / zoom_factor);
+					}
+					break;
+				default:
+					break;
+				}
 			}
 			
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) view.move(sf::Vector2f(0,-10));
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) view.move(sf::Vector2f(10,0));
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) view.move(sf::Vector2f(-10,0));
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) view.move(sf::Vector2f(0,10));
+
+			Window->setView(view);
 			Window->clear(sf::Color::White);
 			Window->draw(Lines_hg);
 			Window->draw(Lines_vg);
