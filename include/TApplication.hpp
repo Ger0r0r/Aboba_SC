@@ -13,7 +13,7 @@ namespace SFML_W {
 			TApplication();
 			~TApplication();
 			void Init();
-			void Run(SCP_space::SCPattern);
+			void Run(SCP_space::SCPattern&);
 			void End();
 	};	
 };

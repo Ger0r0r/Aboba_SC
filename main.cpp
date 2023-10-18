@@ -16,10 +16,12 @@ int main(int argc, char *argv[]) {
 	file >> v >> h;
 
 	SCP_space::SCPattern Chart(h,v);
+	Chart.Init(file); 
 	SFML_W::TApplication Application;
 
 	Application.Init();
 	Application.Run(Chart);
 	Application.End();
+
 	return 0;
 }

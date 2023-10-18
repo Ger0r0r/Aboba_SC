@@ -21,21 +21,24 @@ namespace SCP_space {
 	}
 
 	void SCPattern::Init(std::ifstream & file) {
+		std::cout << h << " " << v << std::endl;
 		for (int i = 0; i < h; i++){
 			for (int j = 0; j < v; j++){
-				file>>m_filled[i][j];
+				file >> m_filled[i][j];
 			}
 		}
+		std::string line;
+		std::getline(file, line);
+		std::getline(file, line);
 		for (int i = 0; i < h; i++){
 			for (int j = 0; j < v; j++){
-				file>>m_colors[i][j];
+				file >> m_colors[i][j];
 			}
 		}
 	}
 
-	void SCPattern::Get_Size(int &hc, int  &vc) {
-		hc = h;
-		vc = v;
+	sf::Vector2i SCPattern::Get_Size() {
+		return sf::Vector2i(h,v);
 	}
 	
 	void SCPattern::Print (){
