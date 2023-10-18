@@ -32,6 +32,11 @@ namespace SFML_W{
 		sf::VertexArray Lines_vb(sf::Lines, (int)(h%10) ? (2*(h/10+2)) : (2*(h/10+1)));
 		sf::VertexArray Lines_vg(sf::Lines, (int)(h%10) ? (2*(h/10*9+h%10-1)) : (2*(h/10*9)));
 
+		std::cout << ((int)(v%10) ? (2*(v/10+2)) : (2*(v/10+1))) << std::endl;
+		std::cout << ((int)(v%10) ? (2*(v/10*9+v%10-1)) : (2*(v/10*9))) << std::endl;
+		std::cout << ((int)(h%10) ? (2*(h/10+2)) : (2*(h/10+1))) << std::endl;
+		std::cout << ((int)(h%10) ? (2*(h/10*9+h%10-1)) : (2*(h/10*9))) << std::endl;
+
 		CALC_FUNC::CLC_set_lines(v, h, Lines_hb, Lines_hg, Lines_vb, Lines_vg);
 
 		sf::Clock clock;

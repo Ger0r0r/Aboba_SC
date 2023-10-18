@@ -11,11 +11,13 @@ namespace CALC_FUNC {
 			// horizontal lines
 			if ((i == 0) || i % 10 == 0 || (i == v)) {
 				// black lines
-				if (i != v) {
+				if ((i != v) || (v % 10 == 0)) {
 					index = 2*i/10;	
 				} else {
 					index = 2*(i/10) + 2;
 				}
+
+				std::cout << "h " << index  << " " << TAB_SPACE+10*i << std::endl;
 
 				arr_h_black[index].color = sf::Color(0,0,0);
 				arr_h_black[index+1].color = sf::Color(0,0,0);
@@ -30,7 +32,7 @@ namespace CALC_FUNC {
 			} else {
 				// grey lines
 				index = (i-1-i/10)*2;
-				
+
 				arr_h_grey[index].color = sf::Color(GREY_CONSTANT,GREY_CONSTANT,GREY_CONSTANT);
 				arr_h_grey[index+1].color = sf::Color(GREY_CONSTANT,GREY_CONSTANT,GREY_CONSTANT);
 				arr_h_grey[index].position = sf::Vector2f(TAB_SPACE,TAB_SPACE+10*i);
@@ -42,11 +44,13 @@ namespace CALC_FUNC {
 			// vertical lines
 			if ((i == 0) || i % 10 == 0 || (i == h)) {
 				// black lines
-				if (i != h) {
+				if ((i != h) || (h % 10 == 0)) {
 					index = 2*i/10;	
 				} else {
 					index = 2*(i/10) + 2;
 				}
+				
+				std::cout << "v " << index  << " " << TAB_SPACE+10*i << std::endl;
 
 				arr_v_black[index].color = sf::Color(0,0,0);
 				arr_v_black[index+1].color = sf::Color(0,0,0);
